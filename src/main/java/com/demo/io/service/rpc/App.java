@@ -15,7 +15,7 @@ public class App {
      */
     public static void main(String[] args) throws InvalidProtocolBufferException {
         MyDataInfo.Person person = MyDataInfo.Person.newBuilder()
-                .setName("吴景洋").setAge(26).setAddress("福建省").build();
+                .setName("WJY").setAge(26).setAddress("FJ").build();
         byte[] person2ByteArray = person.toByteArray();
         MyDataInfo.Person person2 = MyDataInfo.Person.parseFrom(person2ByteArray);
         System.out.println(person2.getName());
