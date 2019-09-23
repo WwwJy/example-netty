@@ -1,0 +1,10 @@
+### protobuf 编译环境
+-- 下载安装环境： https://github.com/protocolbuffers/protobuf/releases
+-- 下载列表中分两种包，1.源码包, 例: protobuf-java-3.9.1.zip
+                  2.编译环境, 例: protoc-3.9.1-win64.zip
+-- 只需要下载编译环境，同时解压后将bin目录配置到环境变量中。  更多的帮助信息运行 protoc h 获取
+-- 依赖包我们选择用maven依赖的方式加入到工程，依赖包有三种为:
+    1. protobuf-java 主要核心包。
+    2. protobuf-util 工具包 。
+    3. protobuf-lite 移动端编译使用
+    这里我们只需要前两个的依赖就可以了。

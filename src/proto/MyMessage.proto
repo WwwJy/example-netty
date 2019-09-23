@@ -1,7 +1,7 @@
 syntax = "proto2";
 
 option optimize_for = SPEED;
-option java_package = "com.demo.io.service.rpc.proto";
+option java_package = "com.demo.io.service.protobuf.proto";
 option java_outer_classname = "MyKindMessage";
 
 message MyMessage{
