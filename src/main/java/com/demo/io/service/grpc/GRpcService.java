@@ -19,6 +19,10 @@ public class GRpcService {
                 .build()
                 .start();
         System.out.println("我开始跑了.");
+        Runtime.getRuntime().addShutdownHook(new Thread(()->{
+            System.out.println("关闭jvm");
+            GRpcService.this.stop();
+        }));
     }
 
     private void stop(){
