@@ -15,7 +15,7 @@ import org.apache.thrift.transport.TTransport;
 public class ThriftClient {
 
     public static void main(String[] args) {
-        TTransport tTransport = new TFramedTransport(new TSocket("localhost",8090),600);
+        TTransport tTransport = new TFramedTransport(new TSocket("127.0.0.1",8090),600);
         TProtocol protocol = new TCompactProtocol(tTransport);
         PersonService.Client client = new PersonService.Client(protocol);
         try {
