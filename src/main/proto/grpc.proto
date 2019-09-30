@@ -11,6 +11,8 @@ service StudentService {
     rpc GetStudentByAge(StudentRequest) returns (stream StudentResponse){}
 
     rpc GetStudentsWrapperByAges(stream StudentRequest) returns (StudentResponseList) {};
+
+    rpc BiTalk(stream StreamRequest) returns (stream StreamResponse){};
 }
 
 message MyRequest {
@@ -33,4 +35,12 @@ message StudentResponse {
 
 message StudentResponseList{
     repeated StudentResponse studentResponse = 1;
+}
+
+message StreamRequest {
+    string request_info = 1;
+}
+
+message StreamResponse {
+    string response_info = 1;
 }

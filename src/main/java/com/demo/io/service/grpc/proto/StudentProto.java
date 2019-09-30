@@ -39,6 +39,16 @@ public final class StudentProto {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_com_demo_io_service_grpc_proto_StudentResponseList_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_demo_io_service_grpc_proto_StreamRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_demo_io_service_grpc_proto_StreamRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_com_demo_io_service_grpc_proto_StreamResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_com_demo_io_service_grpc_proto_StreamResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -47,7 +57,7 @@ public final class StudentProto {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\ngrpc.proto\022\036com.demo.io.service.grpc.p" +
       "roto\"\035\n\tMyRequest\022\020\n\010username\030\001 \001(\t\"\037\n\nM" +
       "yResponse\022\021\n\treal_name\030\002 \001(\t\"\035\n\016StudentR" +
@@ -55,7 +65,9 @@ public final class StudentProto {
       "\n\004name\030\001 \001(\t\022\013\n\003age\030\002 \001(\005\022\014\n\004city\030\003 \001(\t\"" +
       "_\n\023StudentResponseList\022H\n\017studentRespons" +
       "e\030\001 \003(\0132/.com.demo.io.service.grpc.proto" +
-      ".StudentResponse2\200\003\n\016StudentService\022p\n\025G" +
+      ".StudentResponse\"%\n\rStreamRequest\022\024\n\014req" +
+      "uest_info\030\001 \001(\t\"\'\n\016StreamResponse\022\025\n\rres" +
+      "ponse_info\030\001 \001(\t2\357\003\n\016StudentService\022p\n\025G" +
       "etRealNameByUsername\022).com.demo.io.servi" +
       "ce.grpc.proto.MyRequest\032*.com.demo.io.se" +
       "rvice.grpc.proto.MyResponse\"\000\022v\n\017GetStud" +
@@ -65,8 +77,11 @@ public final class StudentProto {
       "dentsWrapperByAges\022..com.demo.io.service" +
       ".grpc.proto.StudentRequest\0323.com.demo.io" +
       ".service.grpc.proto.StudentResponseList\"" +
-      "\000(\001B0\n\036com.demo.io.service.grpc.protoB\014S" +
-      "tudentProtoP\001b\006proto3"
+      "\000(\001\022m\n\006BiTalk\022-.com.demo.io.service.grpc" +
+      ".proto.StreamRequest\032..com.demo.io.servi" +
+      "ce.grpc.proto.StreamResponse\"\000(\0010\001B0\n\036co" +
+      "m.demo.io.service.grpc.protoB\014StudentPro" +
+      "toP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -77,31 +92,43 @@ public final class StudentProto {
     internal_static_com_demo_io_service_grpc_proto_MyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_demo_io_service_grpc_proto_MyRequest_descriptor,
-        new String[] { "Username", });
+        new java.lang.String[] { "Username", });
     internal_static_com_demo_io_service_grpc_proto_MyResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_com_demo_io_service_grpc_proto_MyResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_demo_io_service_grpc_proto_MyResponse_descriptor,
-        new String[] { "RealName", });
+        new java.lang.String[] { "RealName", });
     internal_static_com_demo_io_service_grpc_proto_StudentRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_com_demo_io_service_grpc_proto_StudentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_demo_io_service_grpc_proto_StudentRequest_descriptor,
-        new String[] { "Age", });
+        new java.lang.String[] { "Age", });
     internal_static_com_demo_io_service_grpc_proto_StudentResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_com_demo_io_service_grpc_proto_StudentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_demo_io_service_grpc_proto_StudentResponse_descriptor,
-        new String[] { "Name", "Age", "City", });
+        new java.lang.String[] { "Name", "Age", "City", });
     internal_static_com_demo_io_service_grpc_proto_StudentResponseList_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_com_demo_io_service_grpc_proto_StudentResponseList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_demo_io_service_grpc_proto_StudentResponseList_descriptor,
-        new String[] { "StudentResponse", });
+        new java.lang.String[] { "StudentResponse", });
+    internal_static_com_demo_io_service_grpc_proto_StreamRequest_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_com_demo_io_service_grpc_proto_StreamRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_demo_io_service_grpc_proto_StreamRequest_descriptor,
+        new java.lang.String[] { "RequestInfo", });
+    internal_static_com_demo_io_service_grpc_proto_StreamResponse_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_com_demo_io_service_grpc_proto_StreamResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_com_demo_io_service_grpc_proto_StreamResponse_descriptor,
+        new java.lang.String[] { "ResponseInfo", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

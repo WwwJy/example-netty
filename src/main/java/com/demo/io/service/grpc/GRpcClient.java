@@ -5,6 +5,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
@@ -74,9 +75,47 @@ public class GRpcClient {
             }
         };
 
-        StreamObserver<StudentRequest> studentRequestStreamObserver = stub.getStudentsWrapperByAges(studentResponseListStreamObserver);
-
+        StreamObserver<StudentRequest> studentRequestStreamObserver =
+                stub.getStudentsWrapperByAges(studentResponseListStreamObserver);
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(20).build());
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(30).build());
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(40).build());
+        studentRequestStreamObserver.onNext(StudentRequest.newBuilder().setAge(50).build());
+        studentRequestStreamObserver.onCompleted();
         System.out.println("-------------------------------------");
+        // 阻塞线程以看到返回的异步结果
+        try {
+            Thread.sleep(50000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getStudentBiTalk(){
+        // 异步接收服务端的消息
+        StreamObserver<StreamRequest> streamRequestStreamObserver = stub.biTalk(new StreamObserver<StreamResponse>() {
+            @Override
+            public void onNext(StreamResponse streamResponse) {
+                System.out.println(streamResponse.getResponseInfo());
+            }
+            @Override
+            public void onError(Throwable throwable) {
+                System.out.println(throwable.getMessage());
+            }
+            @Override
+            public void onCompleted() {
+                System.out.println("onCompleted");
+            }
+        });
+        // 主动向服务端发送数据
+        for (int i = 0 ; i<100; i++){
+            streamRequestStreamObserver.onNext(StreamRequest.newBuilder().setRequestInfo(LocalDateTime.now().toString()).build());
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void shutdown() throws InterruptedException {
@@ -87,8 +126,10 @@ public class GRpcClient {
     public static void main(String[] args) throws InterruptedException {
         GRpcClient client = new GRpcClient("127.0.0.1",8090);
         try {
-            client.greet("我擦");
-            client.getStudentByAge(20);
+//            client.greet("我擦");
+//            client.getStudentByAge(20);
+//            client.getStudentsByAgeList();
+            client.getStudentBiTalk();
         }finally {
             client.shutdown();
         }

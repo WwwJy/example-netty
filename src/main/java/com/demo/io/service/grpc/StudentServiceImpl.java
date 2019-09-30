@@ -6,6 +6,7 @@ import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBase {
@@ -55,6 +56,25 @@ public class StudentServiceImpl extends StudentServiceGrpc.StudentServiceImplBas
                         .addAllStudentResponse(list)
                         .build();
                 responseObserver.onNext(sr);
+                responseObserver.onCompleted();
+            }
+        };
+    }
+
+    @Override
+    public StreamObserver<StreamRequest> biTalk(StreamObserver<StreamResponse> responseObserver) {
+        return new StreamObserver<StreamRequest>() {
+            @Override
+            public void onNext(StreamRequest streamRequest) {
+                System.out.println("from client :" + streamRequest.getRequestInfo());
+                responseObserver.onNext(StreamResponse.newBuilder().setResponseInfo(UUID.randomUUID().toString()).build());
+            }
+            @Override
+            public void onError(Throwable throwable) {
+                System.out.println(throwable.getMessage());
+            }
+            @Override
+            public void onCompleted() {
                 responseObserver.onCompleted();
             }
         };

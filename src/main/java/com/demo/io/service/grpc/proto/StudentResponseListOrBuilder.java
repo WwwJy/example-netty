@@ -10,12 +10,12 @@ public interface StudentResponseListOrBuilder extends
   /**
    * <code>repeated .com.demo.io.service.grpc.proto.StudentResponse studentResponse = 1;</code>
    */
-  java.util.List<StudentResponse>
+  java.util.List<com.demo.io.service.grpc.proto.StudentResponse> 
       getStudentResponseList();
   /**
    * <code>repeated .com.demo.io.service.grpc.proto.StudentResponse studentResponse = 1;</code>
    */
-  StudentResponse getStudentResponse(int index);
+  com.demo.io.service.grpc.proto.StudentResponse getStudentResponse(int index);
   /**
    * <code>repeated .com.demo.io.service.grpc.proto.StudentResponse studentResponse = 1;</code>
    */
@@ -23,11 +23,11 @@ public interface StudentResponseListOrBuilder extends
   /**
    * <code>repeated .com.demo.io.service.grpc.proto.StudentResponse studentResponse = 1;</code>
    */
-  java.util.List<? extends StudentResponseOrBuilder>
+  java.util.List<? extends com.demo.io.service.grpc.proto.StudentResponseOrBuilder> 
       getStudentResponseOrBuilderList();
   /**
    * <code>repeated .com.demo.io.service.grpc.proto.StudentResponse studentResponse = 1;</code>
    */
-  StudentResponseOrBuilder getStudentResponseOrBuilder(
-          int index);
+  com.demo.io.service.grpc.proto.StudentResponseOrBuilder getStudentResponseOrBuilder(
+      int index);
 }
