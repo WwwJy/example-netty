@@ -26,6 +26,8 @@ public class NioTest5 {
         ports[4] = 5004;
 
         Selector selector = Selector.open();
+
+        // 循环监听5个端口的链接事件
         for (int i=0; i<ports.length; i++){
             ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
             // false -- 非阻塞配置
@@ -36,14 +38,18 @@ public class NioTest5 {
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("监听端口: " + ports[i]);
         }
+
+        // 处理链接建立事件 和 数据读取事件
         while (true){
             int numbers = selector.select();
             System.out.println("numbers: " + numbers);
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
             System.out.println("selectKey: " + selectionKeys);
             Iterator<SelectionKey> iter = selectionKeys.iterator();
+            // 遍历每个selectionKey  -- selectionKey 是每个channel注册selector到之后返回的标示，通过key可以获得异步事件
             while (iter.hasNext()){
                 SelectionKey key = iter.next();
+                // socket链接建立事件处理
                 if (key.isAcceptable()){
                     ServerSocketChannel channel = (ServerSocketChannel) key.channel();
                     SocketChannel socketChannel = channel.accept();
@@ -51,13 +57,17 @@ public class NioTest5 {
                     socketChannel.register(selector,SelectionKey.OP_READ);
                     iter.remove();
                     System.out.println("获得客户端连接: " + socketChannel);
+
+                // 客户端向服务端发送数据事件处理
                 }else if(key.isReadable()){
                     SocketChannel socketChannel = (SocketChannel)key.channel();
                     int byteRead = 0;
                     while (true){
+                        // 申请一块512字节空间的内存，这块空间将会保存客户端发过来的数据
                         ByteBuffer byteBuffer = ByteBuffer.allocate(512);
                         byteBuffer.clear();
                         int read = socketChannel.read(byteBuffer);
+                        System.out.println("read: " + read);
                         if (read<0){
                             break;
                         }
